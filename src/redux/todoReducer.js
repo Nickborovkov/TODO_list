@@ -5,11 +5,13 @@ const COMPLETE_ITEM = `COMPLETE_ITEM`
 
 const initialState = {
     items: [
-        {id: 1, itemText: `123123123`},
-        {id: 2, itemText: `qqweasdqw`},
-        {id: 3, itemText: `!@#$@!!@@`},
+        {id: 1, itemText: `123123123`, isCompleted: false},
+        {id: 2, itemText: `qqweasdqw`, isCompleted: true},
+        {id: 3, itemText: `!@#$@!!@@`, isCompleted: false},
+        {id: 4, itemText: `123123123`, isCompleted: true},
+        {id: 5, itemText: `qqweasdqw`, isCompleted: false},
+        {id: 6, itemText: `!@#$@!!@@`, isCompleted: true},
     ],
-    isCompleted: [],
 }
 
 const todoReducer = (state = initialState, action) => {
@@ -27,9 +29,18 @@ const todoReducer = (state = initialState, action) => {
                 items: [...state.items.filter(i => i.id !== action.itemId)]
             }
         case COMPLETE_ITEM:
+            debugger
+            let itemsArray = [...state.items]
+            for (let i = 0; i <= state.items.length - 1; i++) {
+                if(itemsArray[i].id === action.itemId){
+                    itemsArray[i].isCompleted = true
+                        ? itemsArray[i].isCompleted === false
+                        : itemsArray[i].isCompleted === true
+                }
+            }
             return {
                 ...state,
-                isCompleted: [...state.isCompleted, action.itemId]
+                items: [...state.items]
             }
         default:
             return state

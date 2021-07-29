@@ -3,6 +3,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {addItem, completeItem, deleteItem} from "../../redux/todoReducer";
+import {getItemsSelector} from "../../selectors/itemsSelectors";
 
 class TodoListContainer extends React.Component{
     render() {
@@ -15,8 +16,7 @@ class TodoListContainer extends React.Component{
 
 const mapStateToProps = (state) => {
     return {
-        items: state.todo.items,
-        isCompleted: state.todo.isCompleted,
+        items: getItemsSelector(state),
     }
 }
 
