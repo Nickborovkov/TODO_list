@@ -1,0 +1,63 @@
+.todoBody{
+    width: 600px;
+    margin: 50px auto;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding-bottom: 50px;
+}
+.title{
+    text-align: center;
+    font-size: 40px;
+    padding: 30px 0;
+    background-color: #495867;
+    color: #ffffff;
+    -webkit-border-radius: 10px 10px 0 0;
+    -moz-border-radius: 10px 10px 0 0;
+    border-radius: 10px 10px 0 0;
+}
+.filterSection{
+    position: relative;
+}
+.filterButton{
+    width: 150px;
+    height: 40px;
+    display: block;
+    margin: 0 auto 100px auto;
+    font-size: 20px;
+    color: #ffffff;
+    background-color: #A7D4DC;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    border: none;
+}
+.filters{
+    position: absolute;
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    top: 50px;
+    left: calc(50% - 200px);
+}
+.filter{
+    width: 100px;
+    height: 40px;
+    font-size: 20px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    border: none;
+    margin: 0 5px;
+    color: #ffffff;
+    background-color: #A7D4DC;
+}
+.itemsReplace{
+    text-align: center;
+    display: block;
+    width: 80%;
+    font-size: 30px;
+    margin: 0 auto;
+    color: lightslategray;
+}
