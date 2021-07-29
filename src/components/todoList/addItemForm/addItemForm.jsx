@@ -1,5 +1,8 @@
 import React from "react";
 import {Field, reduxForm, reset} from "redux-form";
+import styles from './addItemForm.module.css'
+import {maxLength, required} from "../../../utils/formHelpers/validators";
+import Input from "../../../utils/formHelpers/formControls";
 
 const AddNewItem = ({addItem}) => {
 
@@ -14,12 +17,14 @@ const AddNewItem = ({addItem}) => {
 export default AddNewItem
 
 const AddItemForm = ({handleSubmit}) => {
-    return <form onSubmit={handleSubmit}>
-        <Field component='input'
+    return <form className={styles.form} onSubmit={handleSubmit}>
+        <Field className={styles.input}
+               component={Input}
                type='text'
-               placeholder='Write here...'
-               name='addItem'/>
-        <button>Add</button>
+               placeholder='Add a goal here...'
+               name='addItem'
+               validate={[required, maxLength]}/>
+        <button className={styles.button}>Add</button>
     </form>
 }
 
