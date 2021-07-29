@@ -1,17 +1,10 @@
-const ADD_ITEM = `ADD_ITEM`
-const DELETE_ITEM = `DELETE_ITEM`
-const COMPLETE_ITEM = `COMPLETE_ITEM`
+const ADD_ITEM = `todo/ADD_ITEM`
+const DELETE_ITEM = `todo/DELETE_ITEM`
+const COMPLETE_ITEM = `todo/COMPLETE_ITEM`
 
 
 const initialState = {
-    items: [
-        {id: 1, itemText: `123123123`, isCompleted: false},
-        {id: 2, itemText: `qqweasdqw`, isCompleted: true},
-        {id: 3, itemText: `!@#$@!!@@`, isCompleted: false},
-        {id: 4, itemText: `123123123`, isCompleted: true},
-        {id: 5, itemText: `qqweasdqw`, isCompleted: false},
-        {id: 6, itemText: `!@#$@!!@@`, isCompleted: true},
-    ],
+    items: [],
 }
 
 const todoReducer = (state = initialState, action) => {
@@ -29,7 +22,6 @@ const todoReducer = (state = initialState, action) => {
                 items: [...state.items.filter(i => i.id !== action.itemId)]
             }
         case COMPLETE_ITEM:
-            debugger
             let itemsArray = [...state.items]
             for (let i = 0; i <= state.items.length - 1; i++) {
                 if(itemsArray[i].id === action.itemId){
