@@ -1,15 +1,34 @@
 import React from "react";
 import styles from './item.module.css'
+import cn from 'classnames'
+import { AiFillDelete } from 'react-icons/ai';
+import { AiOutlineCheck } from 'react-icons/ai';
+import { AiOutlineClose } from 'react-icons/ai';
 
-const Item = ({item, deleteItem, completeItem}) => {
+const Item = ({item, deleteItem, completeItem, filterType}) => {
 
     return (
-        <div>
-            <p className={`${styles.item} ${item.isCompleted && styles.itemCompleted}`}>{item.itemText}</p>
-            <button onClick={() => { deleteItem(item.id) }}>Delete</button>
-            <button onClick={() => { completeItem(item.id) }}>Complete</button>
+        <div className={cn(styles.itemBody, filterType === `done` && !item.isCompleted && styles.itemDone,
+                           filterType === `undone` && item.isCompleted && styles.itemDone)}>
+
+            <p className={cn(styles.item, item.isCompleted && styles.itemCompleted)}>{item.itemText}</p>
+            <div className={styles.buttonHolder}>
+                <button className={cn(styles.button, item.isCompleted && styles.buttonCancel)}
+                        onClick={() => { completeItem(item.id) }}>
+                    {item.isCompleted ? <AiOutlineClose/> : <AiOutlineCheck/>}
+                </button>
+                <button className={styles.button}
+                        onClick={() => { deleteItem(item.id) }}>
+                    <AiFillDelete/>
+                </button>
+            </div>
+
         </div>
     )
 }
 
 export default Item
+
+
+
+
