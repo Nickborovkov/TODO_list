@@ -61,3 +61,8 @@
     margin: 0 auto;
     color: lightslategray;
 }
+.itemsList{
+    display: flex;
+    justify-content: center;
+    flex-direction: column-reverse;
+}
