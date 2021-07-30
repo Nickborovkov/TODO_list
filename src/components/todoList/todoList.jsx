@@ -38,7 +38,6 @@ const TodoList = ({items, addItem, deleteItem, completeItem}) => {
                     }
                 </div>
             }
-
             <div>
                 {
                     items.length === 0
@@ -53,7 +52,6 @@ const TodoList = ({items, addItem, deleteItem, completeItem}) => {
                                                      filterType={filterType}/>)
                             }
                         </div>
-
                 }
             </div>
         </div>
