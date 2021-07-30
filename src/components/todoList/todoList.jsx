@@ -16,18 +16,24 @@ const TodoList = ({items, addItem, deleteItem, completeItem}) => {
 
         return <div className={styles.todoBody}>
             <h2 className={styles.title}>Plan for today:</h2>
-            <AddNewItem addItem={addItem}/>
+            <AddNewItem addItem={addItem}
+                        items={items}/>
             {
                 items.length > 0 &&
                 <div className={styles.filterSection}>
-                    <button className={styles.filterButton} onClick={seeFilters}>{whatToShow} filters </button>
+                    <button className={styles.filterButton} onClick={seeFilters}>
+                        {whatToShow} filters
+                    </button>
 
                     {
                         whatToShow === `Hide` &&
                         <div className={styles.filters}>
-                            <button className={styles.filter} onClick={ () => {setFilterType(`all`)} } >All</button>
-                            <button className={styles.filter} onClick={ () => {setFilterType(`done`)} } >Done</button>
-                            <button className={styles.filter} onClick={ () => {setFilterType(`undone`)} } >Undone</button>
+                            <button className={styles.filter} onClick={ () =>
+                            {setFilterType(`all`)} } >All</button>
+                            <button className={styles.filter} onClick={ () =>
+                            {setFilterType(`done`)} } >Done</button>
+                            <button className={styles.filter} onClick={ () =>
+                            {setFilterType(`undone`)} } >Undone</button>
                         </div>
                     }
                 </div>
@@ -36,12 +42,17 @@ const TodoList = ({items, addItem, deleteItem, completeItem}) => {
             <div>
                 {
                     items.length === 0
-                        ? <h3 className={styles.itemsReplace}>Add your daily goals here to be shure you won't forget something </h3>
-                        : items.map(i => <Item key={i.id}
-                                              item={i}
-                                              deleteItem={deleteItem}
-                                              completeItem={completeItem}
-                                              filterType={filterType}/>)
+                        ? <h3 className={styles.itemsReplace}>Add your daily goals here to
+                            be shure you won't forget something </h3>
+                        : <div className={styles.itemsList}>
+                            {
+                                items.map(i => <Item key={i.id}
+                                                     item={i}
+                                                     deleteItem={deleteItem}
+                                                     completeItem={completeItem}
+                                                     filterType={filterType}/>)
+                            }
+                        </div>
 
                 }
             </div>
