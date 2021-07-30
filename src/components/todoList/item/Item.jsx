@@ -8,17 +8,25 @@ import { AiOutlineClose } from 'react-icons/ai';
 const Item = ({item, deleteItem, completeItem, filterType}) => {
 
     return (
-        <div className={cn(styles.itemBody, filterType === `done` && !item.isCompleted && styles.itemDone,
-                           filterType === `undone` && item.isCompleted && styles.itemDone)}>
+        <div className={cn(styles.itemBody,
+                            filterType === `done` && !item.isCompleted && styles.itemDone,
+                           filterType === `undone` && item.isCompleted && styles.itemDone)
+        }>
+            <div className={cn(styles.item, item.isCompleted && styles.itemCompleted)}>
+                <p className={styles.itemTime}>{item.currentDate}</p>
+                <p className={styles.itemInner}>{item.itemText}</p>
+            </div>
 
-            <p className={cn(styles.item, item.isCompleted && styles.itemCompleted)}>{item.itemText}</p>
+
             <div className={styles.buttonHolder}>
                 <button className={cn(styles.button, item.isCompleted && styles.buttonCancel)}
                         onClick={() => { completeItem(item.id) }}>
                     {item.isCompleted ? <AiOutlineClose/> : <AiOutlineCheck/>}
                 </button>
                 <button className={styles.button}
-                        onClick={() => { deleteItem(item.id) }}>
+                        onClick={ () => {
+                            deleteItem(item.id)
+                        }}>
                     <AiFillDelete/>
                 </button>
             </div>
