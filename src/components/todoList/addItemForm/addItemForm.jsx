@@ -4,10 +4,18 @@ import styles from './addItemForm.module.css'
 import {maxLength, required} from "../../../utils/formHelpers/validators";
 import Input from "../../../utils/formHelpers/formControls";
 
-const AddNewItem = ({addItem}) => {
+const AddNewItem = ({items, addItem}) => {
 
     const onAddItem = (formValues, dispatch) => {
-        addItem(formValues.addItem)
+
+        let months = [`Jan`,`Feb`,`Mar`,`Apr`,`May`,`Jun`,`Jul`,`Aug`,`Sep`,`Oct`,`Nov`,`Dec`]
+        let days = [`Mon`,`Tue`,`Wed`,`Thu`,`Fri`,`Sat`,`Sun`]
+
+        let now = new Date()
+
+        let newDate = `${months[now.getMonth()]} ${days[now.getDay()]} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`
+        addItem(formValues.addItem, newDate)
+        localStorage.setItem(`${items.length + 1}`, JSON.stringify([items.length + 1, formValues.addItem, false, newDate]))
         dispatch(reset(`addItemForm`))
     }
 
