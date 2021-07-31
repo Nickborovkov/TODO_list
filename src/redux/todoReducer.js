@@ -2,6 +2,7 @@ const GET_ITEMS = `todo/GET_ITEMS`
 const ADD_ITEM = `todo/ADD_ITEM`
 const DELETE_ITEM = `todo/DELETE_ITEM`
 const COMPLETE_ITEM = `todo/COMPLETE_ITEM`
+const COMPLETE_ALL_ITEMS = `todo/COMPLETE_ALL_ITEMS`
 
 
 const initialState = {
@@ -50,6 +51,16 @@ const todoReducer = (state = initialState, action) => {
                 items: newResultArray,
             }
         case COMPLETE_ITEM:
+            for (let i = 1; i <= localStorage.length; i++){
+                let resultString = JSON.parse(localStorage.getItem(String(i)))
+                if(resultString[0] === action.itemId){
+                    if(resultString[2] === false){
+                        localStorage.setItem(`${resultString[0]}`, JSON.stringify([resultString[0], resultString[1], true, resultString[3]]))
+                    } else if(resultString[2] === true){
+                        localStorage.setItem(`${resultString[0]}`, JSON.stringify([resultString[0], resultString[1], false, resultString[3]]))
+                    }
+                }
+            }
             let itemsArray = [...state.items]
             for (let i = 0; i <= state.items.length - 1; i++) {
                 if(itemsArray[i].id === action.itemId){
@@ -61,6 +72,12 @@ const todoReducer = (state = initialState, action) => {
             return {
                 ...state,
                 items: [...state.items]
+            }
+        case COMPLETE_ALL_ITEMS:
+            localStorage.clear()
+            return {
+                ...state,
+                items: []
             }
         default:
             return state
@@ -76,4 +93,6 @@ export const addItem = (itemText, currentDate) => ( { type: ADD_ITEM, itemText, 
 export const deleteItem = (itemId) => ( { type: DELETE_ITEM, itemId } )
 
 export const completeItem = (itemId) => ( { type: COMPLETE_ITEM, itemId } )
+
+export const completeAllItem = () => ( { type: COMPLETE_ALL_ITEMS } )
 
