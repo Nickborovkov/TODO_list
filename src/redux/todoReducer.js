@@ -13,11 +13,10 @@ const todoReducer = (state = initialState, action) => {
         case GET_ITEMS:
             let storageArray = [...state.items]
             for (let i = 1; i <= localStorage.length; i ++){
-                let resultString = localStorage.getItem(String(i))
+                let resultString = JSON.parse(localStorage.getItem(String(i)))
                 storageArray.push(
-                    {id: JSON.parse(resultString)[0], itemText: JSON.parse(resultString)[1],
-                        isCompleted: JSON.parse(resultString)[2],
-                        currentDate: JSON.parse(resultString)[3]}
+                    {id: resultString[0], itemText: resultString[1],
+                        isCompleted: resultString[2],  currentDate: resultString[3]}
                 )
             }
             return {
@@ -34,9 +33,21 @@ const todoReducer = (state = initialState, action) => {
                 }],
             }
         case DELETE_ITEM:
+            let newResultArray = []
+            for (let i = 1; i <= localStorage.length; i++){
+                let resultString = JSON.parse(localStorage.getItem(String(i)))
+                if(resultString[0] !== action.itemId){
+                    newResultArray.push({id: newResultArray.length + 1, itemText: resultString[1],
+                        isCompleted: resultString[2],  currentDate: resultString[3]})
+                                    }
+            }
+            localStorage.clear()
+            for (let i = 0; i <= newResultArray.length - 1; i++){
+                localStorage.setItem(`${newResultArray[i].id}`, JSON.stringify([newResultArray[i].id, newResultArray[i].itemText, newResultArray[i].isCompleted, newResultArray[i].currentDate]))
+            }
             return {
                 ...state,
-                items: [...state.items.filter(i => i.id !== action.itemId)],
+                items: newResultArray,
             }
         case COMPLETE_ITEM:
             let itemsArray = [...state.items]
