@@ -24,7 +24,7 @@
     width: 150px;
     height: 40px;
     display: block;
-    margin: 0 auto 100px auto;
+    margin: 0 auto 50px auto;
     font-size: 20px;
     color: #ffffff;
     background-color: #A7D4DC;
@@ -65,4 +65,17 @@
     display: flex;
     justify-content: center;
     flex-direction: column-reverse;
+}
+.completeAll{
+    display: block;
+    margin: 30px auto 0 auto;
+    width: 150px;
+    height: 40px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    background-color: #D34F73;
+    color: #ffffff;
+    font-size: 20px;
+    border: none;
 }
