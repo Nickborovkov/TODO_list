@@ -24,8 +24,8 @@
     text-transform: capitalize;
 }
 .itemCompleted{
-    color: #dddddd;
-    text-decoration: line-through;
+    background-color: #eeeeee;
+    text-decoration: line-through #B42D51;
 }
 .buttonHolder{
     display: flex;
