@@ -2,7 +2,7 @@ import TodoList from "./todoList";
 import React from "react";
 import {connect} from "react-redux";
 import {compose} from "redux";
-import {addItem, completeItem, deleteItem, getItems} from "../../redux/todoReducer";
+import {addItem, completeAllItem, completeItem, deleteItem, getItems} from "../../redux/todoReducer";
 
 class TodoListContainer extends React.Component{
     componentDidMount() {
@@ -13,7 +13,8 @@ class TodoListContainer extends React.Component{
         return <TodoList {...this.props}
                          addItem={this.props.addItem}
                          deleteItem={this.props.deleteItem}
-                         completeItem={this.props.completeItem}/>
+                         completeItem={this.props.completeItem}
+                         completeAllItem={this.props.completeAllItem}/>
     }
 }
 
@@ -24,5 +25,5 @@ const mapStateToProps = (state) => {
 }
 
 export default compose(
-    connect(mapStateToProps, {getItems, addItem, deleteItem, completeItem})
+    connect(mapStateToProps, {getItems, addItem, deleteItem, completeItem, completeAllItem})
 )(TodoListContainer)

@@ -3,7 +3,7 @@ import Item from "./item/Item";
 import AddNewItem from "./addItemForm/addItemForm";
 import styles from './todoList.module.css'
 
-const TodoList = ({items, addItem, deleteItem, completeItem}) => {
+const TodoList = ({items, addItem, deleteItem, completeItem, completeAllItem}) => {
 
     let [filterType, setFilterType] = useState(`all`)
     let [whatToShow, setWhatToShow] = useState(`See`)
@@ -54,6 +54,11 @@ const TodoList = ({items, addItem, deleteItem, completeItem}) => {
                         </div>
                 }
             </div>
+            {
+                items.length > 0 &&
+                <button className={styles.completeAll} onClick={completeAllItem}>Complete all</button>
+            }
+
         </div>
 }
 
