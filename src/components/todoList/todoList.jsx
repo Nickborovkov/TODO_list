@@ -5,37 +5,51 @@ import styles from './todoList.module.css'
 
 const TodoList = ({items, addItem, deleteItem, completeItem, completeAllItem}) => {
 
-    let [filterType, setFilterType] = useState(`all`)
-    let [whatToShow, setWhatToShow] = useState(`See`)
 
-    let seeFilters = () => {
-        whatToShow === `Hide`
-            ? setWhatToShow(`See`)
-            : setWhatToShow(`Hide`)
+    const [filtersVisible, setFiltersVisible] = useState(false)
+    const showFilters = () => {
+        setFiltersVisible(true)
     }
+    const hideFilters = () => {
+        setFiltersVisible(false)
+    }
+
+    const [filterType, setFilterType] = useState(`all`)
+    const seeAllItems = () => {
+        setFilterType(`all`)
+        hideFilters()
+    }
+    const seeDoneItems = () => {
+        setFilterType(`done`)
+        hideFilters()
+    }
+    const seeUndoneItems = () => {
+        setFilterType(`undone`)
+        hideFilters()
+    }
+
 
         return <div className={styles.todoBody}>
             <h2 className={styles.title}>Plan for today:</h2>
             <AddNewItem addItem={addItem}
                         items={items}/>
-            {
-                items.length > 0 &&
-                <div className={styles.filterSection}>
-                    <button className={styles.filterButton} onClick={seeFilters}>
-                        {whatToShow} filters
-                    </button>
 
-                    {
-                        whatToShow === `Hide` &&
-                        <div className={styles.filters}>
-                            <button className={styles.filter} onClick={ () =>
-                            {setFilterType(`all`)} } >All</button>
-                            <button className={styles.filter} onClick={ () =>
-                            {setFilterType(`done`)} } >Done</button>
-                            <button className={styles.filter} onClick={ () =>
-                            {setFilterType(`undone`)} } >Undone</button>
-                        </div>
-                    }
+
+            {
+                items.length > 0 && !filtersVisible &&
+                <button className={styles.filterButton}
+                        onClick={showFilters}>Filters</button>
+            }
+
+            {
+                items.length > 0 && filtersVisible &&
+                <div className={styles.filters}>
+                    <button className={styles.filter}
+                            onClick={seeAllItems} >All</button>
+                    <button className={styles.filter}
+                            onClick={seeDoneItems} >Done</button>
+                    <button className={styles.filter}
+                            onClick={seeUndoneItems} >Undone</button>
                 </div>
             }
             <div>
@@ -56,7 +70,8 @@ const TodoList = ({items, addItem, deleteItem, completeItem, completeAllItem}) =
             </div>
             {
                 items.length > 0 &&
-                <button className={styles.completeAll} onClick={completeAllItem}>Complete all</button>
+                <button className={styles.completeAll}
+                        onClick={completeAllItem}>Complete all</button>
             }
 
         </div>
