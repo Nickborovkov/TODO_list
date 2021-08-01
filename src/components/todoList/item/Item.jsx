@@ -8,6 +8,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 const Item = ({item, deleteItem, completeItem, filterType}) => {
 
     return (
+        // Filters show chosen elements with adding/deleting needed css style
         <div className={cn(styles.itemBody,
                             filterType === `done` && !item.isCompleted && styles.itemDone,
                            filterType === `undone` && item.isCompleted && styles.itemDone)
