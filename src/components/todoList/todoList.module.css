@@ -18,7 +18,7 @@
     border-radius: 10px 10px 0 0;
 }
 .filterSection{
-    position: relative;
+    display: flex;
 }
 .filterButton{
     width: 150px;
@@ -34,12 +34,9 @@
     border: none;
 }
 .filters{
-    position: absolute;
-    width: 400px;
     display: flex;
     justify-content: center;
-    top: 50px;
-    left: calc(50% - 200px);
+    margin-bottom: 50px;
 }
 .filter{
     width: 100px;
