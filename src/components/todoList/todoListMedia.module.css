@@ -1,0 +1,48 @@
+@media screen and (max-width: 600px) {
+    .todoBody{
+        width: 100%;
+        margin: 0 auto;
+        padding-bottom: 30px;
+        -webkit-border-radius: 0px;
+        -moz-border-radius: 0px;
+        border-radius: 0px;
+    }
+    .title{
+        width: 100%;
+        font-size: 25px;
+        -webkit-border-radius: 0px;
+        -moz-border-radius: 0px;
+        border-radius: 0px;
+    }
+    .itemsList{
+        display: flex;
+        justify-content: center;
+        flex-direction: column-reverse;
+    }
+    .filterButton{
+        width: 120px;
+        height: 40px;
+        display: block;
+        margin: 0 auto 30px auto;
+        font-size: 18px;
+    }
+    .filters{
+        display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+    .filter{
+        width: 80px;
+        height: 40px;
+        font-size: 18px;
+    }
+    .itemsReplace{
+        font-size: 20px;
+    }
+    .completeAll{
+        margin: 20px auto 0 auto;
+        width: 80%;
+        height: 30px;
+        font-size: 18px;
+    }
+}
