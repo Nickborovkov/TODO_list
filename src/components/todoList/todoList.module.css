@@ -32,6 +32,7 @@
     -moz-border-radius: 10px;
     border-radius: 10px;
     border: none;
+    outline: none;
 }
 .filters{
     display: flex;
@@ -49,6 +50,7 @@
     margin: 0 5px;
     color: #ffffff;
     background-color: #A7D4DC;
+    outline: none;
 }
 .itemsReplace{
     text-align: center;
@@ -75,4 +77,5 @@
     color: #ffffff;
     font-size: 20px;
     border: none;
+    outline: none;
 }
