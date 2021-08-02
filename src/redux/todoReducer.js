@@ -34,7 +34,19 @@ const todoReducer = (state = initialState, action) => {
             const months = [`Jan`,`Feb`,`Mar`,`Apr`,`May`,`Jun`,`Jul`,`Aug`,`Sep`,`Oct`,`Nov`,`Dec`]
             const days = [`Mon`,`Tue`,`Wed`,`Thu`,`Fri`,`Sat`,`Sun`]
             const now = new Date()
-            const newDate = `${months[now.getMonth()]} ${days[now.getDay()]} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`
+
+            //Formatting date
+            const formatDate = (date) => {
+                if(String(date).length <= 1) return `0${String(date)}`
+                return String(date)
+            }
+            const currentHours = formatDate(now.getHours())
+            const currentMinutes = formatDate(now.getMinutes())
+            const currentSeconds = formatDate(now.getSeconds())
+
+            //Setting date
+            const newDate = `${now.getFullYear()} / ${months[now.getMonth()]} / ${days[now.getDay() - 1]} 
+            / ${currentHours}:${currentMinutes}:${currentSeconds}`
             //Setting new item to localStorage
             localStorage.setItem(`${itemsArray.length + 1}`,
                 JSON.stringify(
