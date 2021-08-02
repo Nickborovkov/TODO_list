@@ -7,11 +7,13 @@
 - Delete completed item
 - Delete all items
 - Choose which items to show with filters
+- Every added item shows date when it was added
 - All actions save to localStorage
 
 ## Used external libraries:
 - redux
 - react-redux
-- redux-form
+- formik
+- yup
 - react-icons
 - classnames
