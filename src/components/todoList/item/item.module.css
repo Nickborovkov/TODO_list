@@ -21,7 +21,6 @@
     font-size: 20px;
     color: #577399;
     word-wrap: break-word;
-    text-transform: capitalize;
 }
 .itemCompleted{
     background-color: #eeeeee;
