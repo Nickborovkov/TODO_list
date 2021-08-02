@@ -1,36 +1,53 @@
 import React from "react";
-import {Field, reduxForm, reset} from "redux-form";
 import styles from './addItemForm.module.css'
 import media from './addItemFormMedia.module.css'
 import cn from 'classnames'
-import {maxLength, required} from "../../../utils/formHelpers/validators";
-import Input from "../../../utils/formHelpers/formControls";
+import {Formik} from "formik";
+import * as yup from 'yup'
 
 const AddNewItem = ({addItem}) => {
 
-    const onAddItem = (formValues, dispatch) => {
-        addItem(formValues.addItem)
-        dispatch(reset(`addItemForm`))
-    }
+    const validationSchema = yup.object().shape({
+        itemText: yup.string().required(`Goal can't be empty`).max(300, `Max length is 300 symbols`)
+    })
 
-    return <AddItemFormRedux onSubmit={onAddItem}/>
+    return (
+        <div>
+            <Formik
+                initialValues={{
+                    itemText: ''
+                }}
+                validateOnBlur
+                onSubmit = { (values, {resetForm}) =>{
+                    addItem(values.itemText)
+                    resetForm({values: ``})
+                } }
+                validationSchema={validationSchema}
+            >
+                { ({ values, errors, touched, handleChange, handleBlur, handleSubmit,
+                   isValid, dirty}) => (
+                    <div className={cn(styles.form, media.form)}>
+                        <input
+                            className={cn(styles.input, media.input)}
+                            type = 'text'
+                            name = 'itemText'
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.itemText}
+                            placeholder='Add a goal here...'/>
+
+                        {touched.itemText && errors.itemText &&
+                        <div>{errors.itemText}</div>}
+
+                        <button className={cn(styles.button, media.button)}
+                                disabled={!isValid && !dirty}
+                                onClick={handleSubmit}
+                                type={'submit'}>Add</button>
+                    </div>
+                ) }
+            </Formik>
+        </div>
+    )
 }
 
 export default AddNewItem
-
-const AddItemForm = ({handleSubmit}) => {
-    return <form className={cn(styles.form, media.form)}
-                 onSubmit={handleSubmit}>
-        <Field className={cn(styles.input, media.input)}
-               component={Input}
-               type='text'
-               placeholder='Add a goal here...'
-               name='addItem'
-               validate={[required, maxLength]}/>
-        <button className={cn(styles.button, media.button)}>Add</button>
-    </form>
-}
-
-const AddItemFormRedux = reduxForm({
-    form: `addItemForm`
-})(AddItemForm)
