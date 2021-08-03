@@ -4,8 +4,12 @@ import media from './addItemFormMedia.module.css'
 import cn from 'classnames'
 import {Formik} from "formik";
 import * as yup from 'yup'
+import {useDispatch} from "react-redux";
+import {addItem} from "../../../redux/todoReducer";
 
-const AddNewItem = ({addItem}) => {
+const AddNewItem = () => {
+
+    const dispatch = useDispatch()
 
     const validationSchema = yup.object().shape({
         itemText: yup
@@ -22,7 +26,7 @@ const AddNewItem = ({addItem}) => {
                 }}
                 validateOnBlur
                 onSubmit = { (values, {resetForm}) =>{
-                    addItem(values.itemText)
+                    dispatch(addItem(values.itemText))
                     resetForm({values: ``})
                 } }
                 validationSchema={validationSchema}

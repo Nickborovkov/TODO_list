@@ -5,10 +5,14 @@ import cn from 'classnames'
 import { AiFillDelete } from 'react-icons/ai';
 import { AiOutlineCheck } from 'react-icons/ai';
 import { AiOutlineClose } from 'react-icons/ai';
+import {useDispatch} from "react-redux";
+import {completeItem, deleteItem} from "../../../redux/todoReducer";
 
-const Item = ({item, deleteItem, completeItem, filterType}) => {
+const Item = ({item, filterType}) => {
 
-    let arrForClass = [styles.itemDone, media.itemDone]
+    const arrForClass = [styles.itemDone, media.itemDone]
+
+    const dispatch = useDispatch()
 
     return (
         // Filters show chosen elements with adding/deleting needed css style
@@ -25,12 +29,12 @@ const Item = ({item, deleteItem, completeItem, filterType}) => {
             <div className={cn(styles.buttonHolder, media.buttonHolder)}>
                 <button className={cn(styles.button, media.button,
                     item.isCompleted && styles.buttonCancel)}
-                        onClick={() => { completeItem(item.id) }}>
+                        onClick={() => { dispatch(completeItem(item.id)) }}>
                     {item.isCompleted ? <AiOutlineClose/> : <AiOutlineCheck/>}
                 </button>
                 <button className={cn(styles.button, media.button)}
                         onClick={ () => {
-                            deleteItem(item.id)
+                            dispatch(deleteItem(item.id))
                         }}>
                     <AiFillDelete/>
                 </button>

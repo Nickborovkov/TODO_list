@@ -1,11 +1,20 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Item from "./item/Item";
 import AddNewItem from "./addItemForm/addItemForm";
 import styles from './todoList.module.css'
 import media from './todoListMedia.module.css'
 import cn from 'classnames'
+import {useDispatch, useSelector} from "react-redux";
+import {completeAllItem, getItems} from "../../redux/todoReducer";
 
-const TodoList = ({items, addItem, deleteItem, completeItem, completeAllItem}) => {
+const TodoList = () => {
+
+    const items = useSelector(state => state.todo.items)
+    const dispatch = useDispatch()
+
+    useEffect(()=>{
+        dispatch(getItems())
+    },[])
 
     //Setting visibility of filters button
     const [filtersVisible, setFiltersVisible] = useState(false)
@@ -34,7 +43,7 @@ const TodoList = ({items, addItem, deleteItem, completeItem, completeAllItem}) =
 
         return <div className={cn(styles.todoBody, media.todoBody)}>
             <h2 className={cn(styles.title, media.title)}>Plan for today:</h2>
-            <AddNewItem addItem={addItem}/>
+            <AddNewItem/>
 
             {/*Button shows only when filtersVisible = false and items array exists*/}
             {
@@ -65,8 +74,6 @@ const TodoList = ({items, addItem, deleteItem, completeItem, completeAllItem}) =
                         {
                             items.map(i => <Item key={i.id}
                                                  item={i}
-                                                 deleteItem={deleteItem}
-                                                 completeItem={completeItem}
                                                  filterType={filterType}/>)
                         }
                     </div>
@@ -77,7 +84,7 @@ const TodoList = ({items, addItem, deleteItem, completeItem, completeAllItem}) =
             {
                 items.length > 0 &&
                 <button className={cn(styles.completeAll, media.completeAll)}
-                        onClick={completeAllItem}>Complete all</button>
+                        onClick={ () => {dispatch(completeAllItem())} }>Complete all</button>
             }
 
         </div>
