@@ -8,11 +8,13 @@ import { AiOutlineClose } from 'react-icons/ai';
 
 const Item = ({item, deleteItem, completeItem, filterType}) => {
 
+    let arrForClass = [styles.itemDone, media.itemDone]
+
     return (
         // Filters show chosen elements with adding/deleting needed css style
         <div className={cn(styles.itemBody, media.itemBody,
-                            filterType === `done` && !item.isCompleted && styles.itemDone && media.itemDone,
-                           filterType === `undone` && item.isCompleted && styles.itemUndone && media.itemUndone)
+                            filterType === `done` && !item.isCompleted && arrForClass,
+                           filterType === `undone` && item.isCompleted && arrForClass)
         }>
             <div className={cn(styles.item, media.item, item.isCompleted && styles.itemCompleted)}>
                 <p className={styles.itemTime}>{item.currentDate}</p>
@@ -21,7 +23,8 @@ const Item = ({item, deleteItem, completeItem, filterType}) => {
 
 
             <div className={cn(styles.buttonHolder, media.buttonHolder)}>
-                <button className={cn(styles.button, media.button, item.isCompleted && styles.buttonCancel)}
+                <button className={cn(styles.button, media.button,
+                    item.isCompleted && styles.buttonCancel)}
                         onClick={() => { completeItem(item.id) }}>
                     {item.isCompleted ? <AiOutlineClose/> : <AiOutlineCheck/>}
                 </button>

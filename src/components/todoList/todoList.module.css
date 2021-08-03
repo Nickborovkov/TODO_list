@@ -33,6 +33,7 @@
     border-radius: 10px;
     border: none;
     outline: none;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .filters{
     display: flex;
@@ -51,6 +52,7 @@
     color: #ffffff;
     background-color: #A7D4DC;
     outline: none;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .itemsReplace{
     text-align: center;
