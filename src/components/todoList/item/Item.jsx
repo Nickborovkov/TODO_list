@@ -10,27 +10,30 @@ import {completeItem, deleteItem} from "../../../redux/todoReducer";
 
 const Item = ({item, filterType}) => {
 
-    const arrForClass = [styles.itemDone, media.itemDone]
-
     const dispatch = useDispatch()
+
+    const arrayForFilter = [styles.itemDone, media.itemDone]
 
     return (
         // Filters show chosen elements with adding/deleting needed css style
         <div className={cn(styles.itemBody, media.itemBody,
-                            filterType === `done` && !item.isCompleted && arrForClass,
-                           filterType === `undone` && item.isCompleted && arrForClass)
+                            filterType === `done` && !item.isCompleted && arrayForFilter,
+                           filterType === `undone` && item.isCompleted && arrayForFilter)
         }>
-            <div className={cn(styles.item, media.item, item.isCompleted && styles.itemCompleted)}>
+            <div className={cn(styles.item, media.item, item.isCompleted &&
+                styles.itemCompleted)}>
                 <p className={styles.itemTime}>{item.currentDate}</p>
                 <p className={styles.itemInner}>{item.itemText}</p>
             </div>
 
 
             <div className={cn(styles.buttonHolder, media.buttonHolder)}>
-                <button className={cn(styles.button, media.button,
-                    item.isCompleted && styles.buttonCancel)}
+                <button className={cn(styles.button, media.button, item.isCompleted &&
+                    styles.buttonCancel)}
                         onClick={() => { dispatch(completeItem(item.id)) }}>
-                    {item.isCompleted ? <AiOutlineClose/> : <AiOutlineCheck/>}
+                    {item.isCompleted
+                        ? <AiOutlineClose/>
+                        : <AiOutlineCheck/>}
                 </button>
                 <button className={cn(styles.button, media.button)}
                         onClick={ () => {
