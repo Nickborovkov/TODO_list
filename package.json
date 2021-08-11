@@ -1,8 +1,8 @@
 {
-  "name": "todo_list",
+  "name": "TODO_list_app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://nickborovkov.github.io/TODOlist",
+  "homepage": "https://nickborovkov.github.io/Todo_list/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",

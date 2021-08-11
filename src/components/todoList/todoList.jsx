@@ -14,7 +14,7 @@ const TodoList = () => {
 
     useEffect(()=>{
         dispatch(getItems())
-    },[])
+    },[dispatch])
 
     //Setting visibility of filters button
     const [filtersVisible, setFiltersVisible] = useState(false)
