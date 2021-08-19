@@ -1,7 +1,6 @@
 # TODO list react app
 
-## TODO list app
-- Functionsaity
+## What it can do
 - Add item to list
 - Complete item
 - Delete completed item
