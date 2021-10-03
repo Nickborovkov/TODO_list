@@ -1,5 +1,7 @@
 # TODO list react app
 
+![image](https://github.com/Nickborovkov/TODO_list/blob/master/appScreenshot.png)
+
 ## What it can do
 - Add item to list
 - Complete item
